@@ -1,64 +1,79 @@
-import 'dart:math';
+
 
 import 'package:flutter/material.dart';
-
+import 'package:get/instance_manager.dart';
+import 'package:sorting/controller/sortcontroller.dart';
 
 class HomeScreen extends StatelessWidget {
-   HomeScreen({super.key});
+  HomeScreen({super.key});
+
+  var numbController = Get.put(SortController());  
 
   TextEditingController box1cntroller = TextEditingController();
   TextEditingController box2cntroller = TextEditingController();
   TextEditingController box3cntroller = TextEditingController();
   TextEditingController box4cntroller = TextEditingController();
-
+  
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-      body: Column(
-        children: [
-          Row(
-            children: [
+    return Scaffold(
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            TextFormField(
+              controller: box1cntroller,
+              decoration: const InputDecoration(border: OutlineInputBorder()),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            TextFormField(
+              controller: box2cntroller,
+              decoration: const InputDecoration(border: OutlineInputBorder()),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            TextFormField(
+              controller: box3cntroller,
+              decoration: const InputDecoration(border: OutlineInputBorder()),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            TextFormField(
+              controller: box4cntroller,
+              decoration: const InputDecoration(border: OutlineInputBorder()),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            ElevatedButton(
+                onPressed: () {
+                     numbController.numSorted(
+                          box1cntroller.text,
+                          box2cntroller.text,
+                          box3cntroller.text,
+                          box4cntroller.text);
+                },
+                 
+                child: const Text("Sort")),
+            const SizedBox(
+              height: 10,
+            ),
               TextFormField(
-                controller: box1cntroller,
+
+                keyboardType: TextInputType.none,
+                controller: numbController.sortcntroller,
                 decoration: const InputDecoration(
-                  border: OutlineInputBorder()
-                ),
+                    constraints: BoxConstraints(maxWidth: 500),
+                    border: OutlineInputBorder()),
               ),
-                TextFormField(
-                  controller: box2cntroller ,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder()
-                ),
-              ),  TextFormField(
-                controller: box3cntroller,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder()
-                ),
-              ),  TextFormField(
-                controller: box4cntroller,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder()
-                ),
-              ),
-            ],
-          ),
-          ElevatedButton(onPressed: () {
-            onSort(box1cntroller.text, box2cntroller.text, box3cntroller.text, box4cntroller.text);
-          }, child: const Text("Sort"))
-        ],
+          ],
+        ),
       ),
     );
   }
 
-  onSort(
-    num1,num2,num3,num4
-    
-  ){
-    var list = [num1,num2,num3,num4];
-    int i;
-  for(i=list[0];i<list[1];i++){
-
-  }
-
-  }
 }
